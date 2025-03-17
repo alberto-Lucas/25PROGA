@@ -38,6 +38,15 @@
             this.txtNome = new System.Windows.Forms.TextBox();
             this.btnMetodo = new System.Windows.Forms.Button();
             this.btnFuncao = new System.Windows.Forms.Button();
+            this.btnFOR = new System.Windows.Forms.Button();
+            this.tbnWhile = new System.Windows.Forms.Button();
+            this.btnDoWhile = new System.Windows.Forms.Button();
+            this.lstItens = new System.Windows.Forms.ListBox();
+            this.btnLimpar = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtValorInteiro = new System.Windows.Forms.TextBox();
+            this.btnSoNumero = new System.Windows.Forms.Button();
+            this.lblResultado = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -134,12 +143,104 @@
             this.btnFuncao.UseVisualStyleBackColor = true;
             this.btnFuncao.Click += new System.EventHandler(this.btnFuncao_Click);
             // 
+            // btnFOR
+            // 
+            this.btnFOR.Location = new System.Drawing.Point(409, 9);
+            this.btnFOR.Name = "btnFOR";
+            this.btnFOR.Size = new System.Drawing.Size(75, 23);
+            this.btnFOR.TabIndex = 10;
+            this.btnFOR.Text = "FOR";
+            this.btnFOR.UseVisualStyleBackColor = true;
+            this.btnFOR.Click += new System.EventHandler(this.btnFOR_Click);
+            // 
+            // tbnWhile
+            // 
+            this.tbnWhile.Location = new System.Drawing.Point(409, 38);
+            this.tbnWhile.Name = "tbnWhile";
+            this.tbnWhile.Size = new System.Drawing.Size(75, 23);
+            this.tbnWhile.TabIndex = 11;
+            this.tbnWhile.Text = "WHILE";
+            this.tbnWhile.UseVisualStyleBackColor = true;
+            this.tbnWhile.Click += new System.EventHandler(this.tbnWhile_Click);
+            // 
+            // btnDoWhile
+            // 
+            this.btnDoWhile.Location = new System.Drawing.Point(409, 68);
+            this.btnDoWhile.Name = "btnDoWhile";
+            this.btnDoWhile.Size = new System.Drawing.Size(75, 23);
+            this.btnDoWhile.TabIndex = 12;
+            this.btnDoWhile.Text = "DO WHILE";
+            this.btnDoWhile.UseVisualStyleBackColor = true;
+            this.btnDoWhile.Click += new System.EventHandler(this.btnDoWhile_Click);
+            // 
+            // lstItens
+            // 
+            this.lstItens.FormattingEnabled = true;
+            this.lstItens.Location = new System.Drawing.Point(490, 14);
+            this.lstItens.Name = "lstItens";
+            this.lstItens.Size = new System.Drawing.Size(120, 95);
+            this.lstItens.TabIndex = 13;
+            // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Location = new System.Drawing.Point(409, 97);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpar.TabIndex = 14;
+            this.btnLimpar.Text = "LIMPAR";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 115);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Valor Inteiro:";
+            // 
+            // txtValorInteiro
+            // 
+            this.txtValorInteiro.Location = new System.Drawing.Point(12, 131);
+            this.txtValorInteiro.Name = "txtValorInteiro";
+            this.txtValorInteiro.Size = new System.Drawing.Size(100, 20);
+            this.txtValorInteiro.TabIndex = 16;
+            // 
+            // btnSoNumero
+            // 
+            this.btnSoNumero.Location = new System.Drawing.Point(12, 157);
+            this.btnSoNumero.Name = "btnSoNumero";
+            this.btnSoNumero.Size = new System.Drawing.Size(100, 23);
+            this.btnSoNumero.TabIndex = 17;
+            this.btnSoNumero.Text = "SÓ NUMERO";
+            this.btnSoNumero.UseVisualStyleBackColor = true;
+            this.btnSoNumero.Click += new System.EventHandler(this.btnSoNumero_Click);
+            // 
+            // lblResultado
+            // 
+            this.lblResultado.AutoSize = true;
+            this.lblResultado.Location = new System.Drawing.Point(12, 183);
+            this.lblResultado.Name = "lblResultado";
+            this.lblResultado.Size = new System.Drawing.Size(35, 13);
+            this.lblResultado.TabIndex = 18;
+            this.lblResultado.Text = "label5";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(459, 121);
+            this.ClientSize = new System.Drawing.Size(650, 207);
+            this.Controls.Add(this.lblResultado);
+            this.Controls.Add(this.btnSoNumero);
+            this.Controls.Add(this.txtValorInteiro);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.btnLimpar);
+            this.Controls.Add(this.lstItens);
+            this.Controls.Add(this.btnDoWhile);
+            this.Controls.Add(this.tbnWhile);
+            this.Controls.Add(this.btnFOR);
             this.Controls.Add(this.btnFuncao);
             this.Controls.Add(this.btnMetodo);
             this.Controls.Add(this.txtNome);
@@ -169,6 +270,15 @@
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Button btnMetodo;
         private System.Windows.Forms.Button btnFuncao;
+        private System.Windows.Forms.Button btnFOR;
+        private System.Windows.Forms.Button tbnWhile;
+        private System.Windows.Forms.Button btnDoWhile;
+        private System.Windows.Forms.ListBox lstItens;
+        private System.Windows.Forms.Button btnLimpar;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtValorInteiro;
+        private System.Windows.Forms.Button btnSoNumero;
+        private System.Windows.Forms.Label lblResultado;
     }
 }
 

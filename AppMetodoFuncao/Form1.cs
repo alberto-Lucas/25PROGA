@@ -96,5 +96,87 @@ namespace AppMetodoFuncao
             //para retornar o valor do metodo
             return "O Nome informado é: " + Nome;
         }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            //Limpar o ListBox
+            //O listBox é um array
+            //Items = são o registros do Array
+            //Clear é o metodo para limpar os
+            //registros
+            lstItens.Items.Clear();
+        }
+
+        private void btnFOR_Click(object sender, EventArgs e)
+        {
+            //Criar um laço de repetição
+            //com um valor fixo de vezes
+            for (int i = 0; i <= 10; i++)
+            {
+                //Adicionar a posição de I
+                //na lista
+                lstItens.Items.Add(i.ToString());
+            }
+        }
+
+        private void tbnWhile_Click(object sender, EventArgs e)
+        {
+            //Laço de repetição
+            //com condição de parada
+            //só para qunado for TRUE
+            int i = 0;
+            while(i <= 10)
+            {
+                lstItens.Items.Add(i.ToString());
+                i++;
+            }
+        }
+
+        private void btnDoWhile_Click(object sender, EventArgs e)
+        {
+            //Laço de repetição
+            //com pelo menos
+            //uma execução
+            int i = 0;
+            do
+            {
+                lstItens.Items.Add(i.ToString());
+                i++;
+            }
+            while (i <= 10);
+        }
+
+        private void btnSoNumero_Click(object sender, EventArgs e)
+        {
+            //Vamos ler o valor informado pelo usuario
+            //extrair somente os numeros
+            //apresentar o numeros na label
+            lblResultado.Text = SoNumero(txtValorInteiro.Text);
+        }
+
+        //Criar uma função 
+        //para retornar somente os caracteres
+        //referentes a numeros de uma string
+        //OU SEJA "10A2" -> "102"
+        string SoNumero(string Texto)
+        {
+            //Criar laço para escaner a variavel
+            //Lenght retorna a quantidade de 
+            //caracteres de uma string
+
+            //variavel q vai receber somente os numeros
+            string resultado = "";
+            for(int i = 0; i < Texto.Length; i++)
+            {
+                //Validação do tipo de caracter
+                if (char.IsDigit(Texto[i]))
+                {
+                    resultado += Texto[i];
+                }
+            }
+
+            //Retorno o resultado
+            return resultado;
+        }
     }
 }
