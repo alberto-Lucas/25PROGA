@@ -19,7 +19,7 @@ namespace AppCadastros
             //Application.Run(new Form1());
             //Nao esquecer de voltar pra tela
             //PRINCIAPL!!
-            Application.Run(new frmCadCliente());
+            Application.Run(new Form1());
         }
     }
 }
