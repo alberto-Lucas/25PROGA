@@ -129,6 +129,7 @@
             this.btnGravar.TabIndex = 8;
             this.btnGravar.Text = "Gravar";
             this.btnGravar.UseVisualStyleBackColor = true;
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // btnAdicionar
             // 
@@ -138,6 +139,7 @@
             this.btnAdicionar.TabIndex = 9;
             this.btnAdicionar.Text = "Adicionar";
             this.btnAdicionar.UseVisualStyleBackColor = true;
+            this.btnAdicionar.Click += new System.EventHandler(this.btnAdicionar_Click);
             // 
             // btnCarregar
             // 
@@ -148,6 +150,7 @@
             this.btnCarregar.TabIndex = 12;
             this.btnCarregar.Text = "Carregar";
             this.btnCarregar.UseVisualStyleBackColor = true;
+            this.btnCarregar.Click += new System.EventHandler(this.btnCarregar_Click);
             // 
             // label4
             // 
@@ -166,6 +169,7 @@
             this.txtArquivo.Location = new System.Drawing.Point(12, 276);
             this.txtArquivo.Multiline = true;
             this.txtArquivo.Name = "txtArquivo";
+            this.txtArquivo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtArquivo.Size = new System.Drawing.Size(378, 46);
             this.txtArquivo.TabIndex = 10;
             // 

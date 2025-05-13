@@ -160,5 +160,150 @@ namespace AppManipulaArquivo
                     MessageBoxIcon.Error);
             }
         }
+
+        private void btnGravar_Click(object sender, EventArgs e)
+        {
+            //Validar os dados do diretorio
+            if(!ValidarDiretorio(
+                txtCaminho.Text, txtNomeArquivo.Text))
+            {
+                //O messageBox é exibido na função
+                //ValidarDiretorio
+                return;
+            }
+
+            //Usando try, para tratar o erro
+            //se ocorrer
+            try
+            {
+                //Gravar o conteudo do campos TEXTO
+                //no arquivo
+                //No método de gravação, todo o conteudo
+                //do arquivo é subistituido pelo novo
+                //Ou seja o arquivo será limpo, e a 
+                //nova informação será gravada
+                //Informar o diretorio do arquivos
+                //e o conteudo
+                File.WriteAllText(
+                    GetDiretorioCompleto(),
+                    txtTexto.Text);
+
+                MessageBox.Show(
+                    "Dados gravados com sucesso!",
+                    "Informação",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(
+                    "Ocorreu uma falha ao gravar os " +
+                    "dados no arquivo." +
+                    Environment.NewLine + 
+                    "Erro original: " + ex.Message,
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            //Seguir a mesma ideia do botão gravar
+            //Validar o diretorio
+            if(!ValidarDiretorio(
+                txtCaminho.Text, txtNomeArquivo.Text))
+            {
+                return;
+            }
+
+            try
+            {
+                //Iremos adicionar o conteudo do campo
+                //Texto ao arquivo
+                //Diferente da rotina de gravação
+                //aqui iremos adicionar o conteudo
+                //ao que ja existe no arquivo
+                //Dica: o conteudo é inserido em sequencia
+                //Nescessario inserir um quebra de linha
+                //para sempre que inserir um novo
+                //conteudo, o mesmo seria inserido
+                //na linha de baixo
+                File.AppendAllText(
+                    GetDiretorioCompleto(),
+                    txtTexto.Text + 
+                    Environment.NewLine);
+                //Notificamos o usuario
+                MessageBox.Show(
+                    "Dados adicionados com sucesso.",
+                    "Informação",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Ocorreu uma falha ao adicionar os" +
+                    "dados no arquivo." +
+                    Environment.NewLine +
+                    "Erro original: "+ ex.Message,
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCarregar_Click(object sender, EventArgs e)
+        {
+            //Validar diretorio
+            if(!ValidarDiretorio(
+                txtCaminho.Text, txtNomeArquivo.Text))
+            {
+                return;
+            }
+
+            try
+            {
+                //Validar se o arquivo realmente
+                //existe
+                if(File.Exists(GetDiretorioCompleto()))
+                {
+                    //Caso o arquivo exista
+                    //iremos carregar o conteudo do arquivo
+                    //e apresentar no campo txtArquivo
+
+                    //Iremos carregar o arquivo
+                    txtArquivo.Text =
+                            File.ReadAllText(
+                                GetDiretorioCompleto());
+
+                    //Notificamos o usuario
+                    MessageBox.Show(
+                        "Arquivo carregado com sucesso.",
+                        "Informação",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "O arquivo não existe.",
+                        "Atenção",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Ocorreu uma falha ao carregar " +
+                    "o arquivo." +
+                    Environment.NewLine + 
+                    "Erro original: " + ex.Message,
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
     }
 }
