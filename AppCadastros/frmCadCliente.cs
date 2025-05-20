@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,11 +73,14 @@ namespace AppCadastros
             if(ValidateChildren(
                 ValidationConstraints.Enabled))
             {
+                /*
                 MessageBox.Show(
                     "Registro salvo com sucesso!",
                     "Informação",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+                */
+                Salvar();
                 Close();
             }
             else
@@ -178,6 +182,117 @@ namespace AppCadastros
                 e.Cancel = false;
                 errProvider.SetError(
                     mskCPF, "");
+            }
+        }
+
+        //Função que valida o arquivo
+        bool ArquivoExiste(string caminho)
+        {
+            //Iremos validar a existencia do arquivo
+            //lembrando que o nome do arquivo será o CPF
+            //portanto se um arquivo ja existir
+            //significa que ja possui um cadastro 
+            //de cliente com aquele CPF
+            //retornando a existencia do arquivo
+            // Verifica se o arquivo já existe
+            return File.Exists(caminho);
+        }
+
+        //Método para gravar o arquivo
+        void GravarArquivo(string caminho, string conteudo)
+        {
+            //Iremos para a rotina de gravação do arquivo
+            //Caso for o primeiro cadastro a pasta 
+            //do cadastro não deve existir
+            //para isso precisamos validar se o caminho existe
+            //se não existir iremos criar
+
+            //OBS: Não usamos o Try aqui
+            //pois foi usado na rotina anterior
+
+            // Cria o diretório se não existir
+            string pasta = Path.GetDirectoryName(caminho);
+            if (!Directory.Exists(pasta))
+            {
+                Directory.CreateDirectory(pasta);
+            }
+
+            // Grava o conteúdo no arquivo
+            File.WriteAllText(caminho, conteudo);
+        }
+
+        //Função que retorna o caminho do arquivo
+        string GetDirArquivo(string tipoCadastro, string nomeArquivo)
+        {
+            //O caminho será montado:
+            //Diretorio Raiz do executavel
+            //tipo do cadastro: Clientes
+            //Nome arquivo: CPF do cliente
+            //Ex: C:/Programas/AppCadastros/Clientes/00000000000.txt
+
+            // Diretório raiz do executável
+            string diretorioRaiz = AppDomain.CurrentDomain.BaseDirectory;
+
+            return
+                Path.Combine(diretorioRaiz, tipoCadastro, nomeArquivo + ".txt");
+        }
+
+        //Função que retorna o cadastro em forma de Conteudo
+        string GetCadastro()
+        {
+            //Iremos concatenar o cadastro
+            //para o conteudo do arquivo
+            string cadastro =
+                "CPF: " + mskCPF.Text +
+                Environment.NewLine +
+                "NOME: " + txtNome.Text +
+                Environment.NewLine +
+                "DATA_NASCIMENTO: " + dtpDataNascimento.Text +
+                Environment.NewLine +
+                "RG: " + txtRG.Text;
+
+            return cadastro;
+        }
+
+        //Método para Salvar o Cadastro
+        void Salvar()
+        {
+            //Recuperamos o caminho completo
+            //Onde iremos definir o tipo do cadastro: Clientes
+            //e o nome do arquivo: CPF
+            //precisamos do só numero para remover a mascara do CPF
+            string caminhoCompleto = 
+                GetDirArquivo("Cliente", SoNumero(mskCPF.Text));
+
+            //Primeira coisa validar a existencia do arquivo
+            if(ArquivoExiste(caminhoCompleto))
+            {
+                MessageBox.Show(
+                    "Já existe um cadastro com este CPF.",
+                    "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            //Agora iremos tentar gravar o cadastro no arquivo
+            try
+            {
+                GravarArquivo(caminhoCompleto, GetCadastro());
+
+                //Iremos apresentar o diretorio apenas para
+                //teste interno
+                //No programa final o usuário nao deve saber
+                //onde o arquivo foi salvo
+                MessageBox.Show(
+                    "Registro salvo com sucesso!" + Environment.NewLine +
+                    Environment.NewLine + "Salvo em: " + caminhoCompleto,
+                    "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Falha ao salvar o cadastro." + Environment.NewLine +
+                    "Erro original: " + ex.Message, "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
